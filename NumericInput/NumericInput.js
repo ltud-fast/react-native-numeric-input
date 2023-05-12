@@ -76,8 +76,14 @@ export default class NumericInput extends Component {
             this.setState({ stringValue: '-' })
             return
         }
-        if ((value.length === 1 && value === '.') || (value.length === 2 && value === '0.')) {
+        //Xu ly thap phan
+        if ((value.length === 1 && value === '.') || (value.length === 1 && value === ',') || (value.length === 2 && value === '0.') || (value.length === 2 && value === '0,')) {
             this.setState({ stringValue: '0.' })
+            return
+        }
+		//Xu ly thap phan
+        if ((value.charAt(value.length - 1) === ',' && value.length > 1)) {
+            this.setState({ stringValue: value.slice(0, value.length - 1) + '.'})
             return
         }
         if ((value.charAt(value.length - 1) === '.')) {
